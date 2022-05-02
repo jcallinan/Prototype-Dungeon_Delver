@@ -37,8 +37,8 @@ public class InRoom : MonoBehaviour
         set
         {
             Vector2 rm = roomNum;
-            rm.x += ROOM_W;
-            rm.y += ROOM_H;
+            rm.x *= ROOM_W;
+            rm.y *= ROOM_H;
             rm += value;
 
             transform.position = rm;
@@ -66,6 +66,18 @@ public class InRoom : MonoBehaviour
         }
     }
     
+    public Vector2 GetRoomPosOnGrid(float mult = -1)
+    {
+        if (mult == -1) mult = gridMult;
+
+        Vector2 rPos = roomPos;
+        rPos /= mult;
+        rPos.x = Mathf.Round(rPos.x);
+        rPos.y = Mathf.Round(rPos.y);
+        rPos *= mult;
+
+        return rPos;
+    }
     
     
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Dray : MonoBehaviour
+public class Dray : MonoBehaviour, IFacingMover
 {
     public enum eMode
     {
@@ -25,6 +25,8 @@ public class Dray : MonoBehaviour
 
     private Rigidbody _rigid;
     private Animator  _anim;
+    private InRoom    _inRoom;
+    
 
     // Mode related fields
     private float _timeAtkDone = 0;
@@ -37,6 +39,7 @@ public class Dray : MonoBehaviour
     {
         _rigid = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
+        _inRoom = GetComponent<InRoom>();
     }   
 
     private void Update()
@@ -98,4 +101,63 @@ public class Dray : MonoBehaviour
 
         _rigid.velocity = vel * speed;
     }
+
+
+    public int GetFacing()
+    {
+        return facing;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public Vector2 GetRoomPosOnGrid(float mult = -1)
+    {
+        return _inRoom.GetRoomPosOnGrid(mult);
+    }
+    
+
+    public bool moving
+    {
+        get
+        {
+            return (mode == eMode.move);
+        }
+    }
+
+    public float gridMult
+    {
+        get
+        {
+            return _inRoom.gridMult;
+        }
+    }
+
+    public Vector2 roomPos
+    {
+        get
+        {
+            return _inRoom.roomPos;
+        }
+        set
+        {
+            _inRoom.roomPos = value;
+        }
+    }
+    
+    public Vector2 roomNum
+    {
+        get
+        {
+            return _inRoom.roomNum;
+        }
+        set
+        {
+            _inRoom.roomNum = value;
+        }
+    }
+    
+    
 }

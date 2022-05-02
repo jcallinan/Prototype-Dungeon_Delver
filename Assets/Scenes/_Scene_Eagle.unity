@@ -404,9 +404,11 @@ GameObject:
   - component: {fileID: 1212922839}
   - component: {fileID: 1212922838}
   - component: {fileID: 1212922837}
-  - component: {fileID: 1212922841}
   - component: {fileID: 1212922840}
   - component: {fileID: 1212922842}
+  - component: {fileID: 1212922841}
+  - component: {fileID: 1212922843}
+  - component: {fileID: 1212922844}
   m_Layer: 0
   m_Name: Dray
   m_TagString: Untagged
@@ -546,6 +548,32 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1212922843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212922836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8986f16d17730fd42a4efd8e02234541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1212922844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212922836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cfc4f5d40cd264486ab697b660c501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keepInRoom: 1
+  gridMult: 0.5
 --- !u!1 &1232220589
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +588,8 @@ GameObject:
   - component: {fileID: 1232220591}
   - component: {fileID: 1232220590}
   - component: {fileID: 1232220595}
+  - component: {fileID: 1232220597}
+  - component: {fileID: 1232220596}
   m_Layer: 0
   m_Name: Skeletos
   m_TagString: Untagged
@@ -699,6 +729,32 @@ MonoBehaviour:
   timeThinkMax: 4
   facing: 0
   timeNextDecision: 0
+--- !u!114 &1232220596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232220589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8986f16d17730fd42a4efd8e02234541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1232220597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232220589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cfc4f5d40cd264486ab697b660c501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keepInRoom: 1
+  gridMult: 0.5
 --- !u!1 &1515710897
 GameObject:
   m_ObjectHideFlags: 0
