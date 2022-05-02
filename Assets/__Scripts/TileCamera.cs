@@ -11,6 +11,8 @@ public class TileCamera : MonoBehaviour
     static public Sprite[]  SPRITES;
     static public Transform TILE_ANCHOR;
     static public Tile[,]   TILES;
+    static public string    COLLISIONS;
+    
 
     
     [Header("Set in Inspector")]
@@ -22,6 +24,7 @@ public class TileCamera : MonoBehaviour
 
     private void Awake()
     {
+        COLLISIONS = Utils.RemoveLineEndings(mapCollisions.text);
         LoadMap();
     }
 
@@ -43,7 +46,7 @@ public class TileCamera : MonoBehaviour
             tileNums = lines[j].Split(' ');
             for (int i = 0; i < W; i++)
             {
-                tileNums[i] = tileNums[i].Replace("\r", "");
+                tileNums[i] = tileNums[i].Replace("\r", string.Empty);
 
                 if (tileNums[i] == "..")
                 {

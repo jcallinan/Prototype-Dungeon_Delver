@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,13 @@ public class Tile : MonoBehaviour
     public int x;
     public int y;
     public int tileNum;
+
+    private BoxCollider _bCollider;
+    
+    private void Awake()
+    {
+        _bCollider = GetComponent<BoxCollider>();
+    }
 
     public void SetTile(int eX, int eY, int eTileNum = -1)
     {
@@ -20,6 +28,66 @@ public class Tile : MonoBehaviour
 
         tileNum = eTileNum;
         GetComponent<SpriteRenderer>().sprite = TileCamera.SPRITES[tileNum];
+
+        SetCollider();
     }
 
+    private void SetCollider()
+    {
+        _bCollider.enabled = true;
+        char c = TileCamera.COLLISIONS[tileNum];
+
+        switch (c)
+        {
+            case 'S':
+                _bCollider.center = Vector3.zero;
+                _bCollider.size = Vector3.one;
+                break;
+
+            case 'W':
+                _bCollider.center = new Vector3(0, 0.25f, 0);
+                _bCollider.size = new Vector3(1, 0.5f, 1);
+                break;
+
+            case 'A':
+                _bCollider.center = new Vector3(-0.25f, 0, 0);
+                _bCollider.size = new Vector3(0.5f, 1, 1);
+                break;
+
+            case 'D':
+                _bCollider.center = new Vector3(0.25f, 0, 0);
+                _bCollider.size = new Vector3(0.5f, 1, 1);
+                break;
+
+            // OPTIONAL COLLISION IDENTIFIERS
+            case 'Q':
+                _bCollider.center = new Vector3(-0.25f, 0.25f, 0);
+                _bCollider.size = new Vector3(0.5f, 0.5f, 1);
+                break;
+
+            case 'E':
+                _bCollider.center = new Vector3(0.25f, 0.25f, 0);
+                _bCollider.size = new Vector3(0.5f, 0.5f, 1);
+                break;
+
+            case 'Z':
+                _bCollider.center = new Vector3(-0.25f, -0.25f, 0);
+                _bCollider.size = new Vector3(0.5f, 0.5f, 1);
+                break;
+            
+             case 'X':
+                _bCollider.center = new Vector3(0, -0.25f, 0);
+                _bCollider.size = new Vector3(1, 0.5f, 1);
+                break;
+
+             case 'C':
+                _bCollider.center = new Vector3(0.25f, -0.25f, 0);
+                _bCollider.size = new Vector3(0.5f, 0.5f, 1);
+                break;
+
+            default:
+                _bCollider.enabled = false;
+                break;
+        }
+    }
 }
