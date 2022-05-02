@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum eMode
-{
-    idle,
-    move,
-    attack,
-    transition
-}
 
 public class Dray : MonoBehaviour
 {
+    public enum eMode
+    {
+        idle,
+        move,
+        attack,
+        transition
+    }
+    
     [Header("Set in Inspector")]
     public float speed = 5;
     public float attackDuration = 0.25f;
