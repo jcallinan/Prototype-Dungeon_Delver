@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
 {
@@ -35,7 +35,6 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
     public Vector3 lastSafeLoc;
     public int lastSafeFacing;
     
-    
     [SerializeField] private int _health;    
     
     private Rigidbody      _rigid;
@@ -54,6 +53,11 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
     
     private KeyCode[] _keys = new KeyCode[]{ KeyCode.RightArrow,KeyCode.UpArrow, KeyCode.LeftArrow, KeyCode.DownArrow};
     private Vector3[] _directions = new Vector3[]{ Vector3.right,Vector3.up, Vector3.left, Vector3.down};
+
+    private Func<float, int> horFacing = input => (input > 0) ? 0: 2;
+    private Func<float, int> verFacing = input => (input > 0) ? 1: 3;
+
+    private string _pressedFirst;
     
 
     private void Awake()
@@ -90,11 +94,32 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
         }
 
         dirHeld = -1;
-        
-        // Handle movement input
-        for (int i = 0; i < 4; i++)
+
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        if (horizontal != 0 && vertical == 0)
         {
-             if (Input.GetKey(_keys[i])) dirHeld = i;
+            dirHeld = horFacing(horizontal);
+            _pressedFirst = "Horizontal";
+        }
+
+        if (vertical != 0 && horizontal == 0)
+        {
+            dirHeld = verFacing(vertical);
+            _pressedFirst = "Vertical";
+        }
+
+        if (horizontal != 0 && vertical != 0)
+        {
+            if (_pressedFirst.Equals("Horizontal"))
+            {
+                dirHeld = verFacing(vertical);
+            }
+            else
+            {
+                dirHeld = horFacing(horizontal);
+            }
         }
 
         // Handle attack input
