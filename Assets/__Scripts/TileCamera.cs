@@ -4,6 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[System.Serializable]
+public class TileSwap
+{
+    public int        tileNum;
+    public GameObject prefabSwap;
+    public GameObject guaranteedItemDrop;
+    public int        overrideTileNum = -1;
+}
+
 public class TileCamera : MonoBehaviour
 {
     static private int      W, H;
@@ -14,18 +23,36 @@ public class TileCamera : MonoBehaviour
     static public string    COLLISIONS;
     
 
-    
     [Header("Set in Inspector")]
-    public TextAsset mapData;
-    public Texture2D mapTiles;
-    public TextAsset mapCollisions;
-    public Tile      prefabTile;
-
+    public TextAsset      mapData;
+    public Texture2D      mapTiles;
+    public TextAsset      mapCollisions;
+    public Tile           prefabTile;
+    public int            defaultTileNum;
+    public List<TileSwap> tileSwaps;
+    
+    private Dictionary<int, TileSwap> _tileSwapDict;
+    private Transform                 _enemyAnchor;
+    private Transform                 _itemAnchor;
+    
 
     private void Awake()
     {
         COLLISIONS = Utils.RemoveLineEndings(mapCollisions.text);
+        _enemyAnchor = (new GameObject("Enemy Anchor")).transform;
+        _itemAnchor = (new GameObject("Item Anchor")).transform;
+
+        PrepareTileSwapDict();
         LoadMap();
+    }
+
+    private void PrepareTileSwapDict()
+    {
+        _tileSwapDict = new Dictionary<int, TileSwap>();
+        foreach (TileSwap ts in tileSwaps)
+        {
+            _tileSwapDict.Add(ts.tileNum, ts);
+        }
     }
 
     public void LoadMap()
@@ -56,13 +83,49 @@ public class TileCamera : MonoBehaviour
                 {
                     MAP[i, j] = int.Parse(tileNums[i], NumberStyles.HexNumber);
                 }
+
+                CheckTileSwaps(i, j);
             }
         }
 
-        Debug.Log("Parsed " + SPRITES.Length + " sprites.");
-        Debug.Log("Map size " + W + " wide by " + H + " high");
-
         ShowMap();
+    }
+
+    private void CheckTileSwaps(int i, int j)
+    {
+        int tNum = GET_MAP(i, j);
+        if (!_tileSwapDict.ContainsKey(tNum)) return;
+
+        TileSwap ts = _tileSwapDict[tNum];
+        if (ts.prefabSwap != null)
+        {
+            GameObject go = Instantiate<GameObject>(ts.prefabSwap);
+            Enemy e = go.GetComponent<Enemy>();
+
+            if (e != null)
+            {
+                go.transform.SetParent(_enemyAnchor);
+            }
+            else
+            {
+                go.transform.SetParent(_itemAnchor);
+            }
+
+            go.transform.position = new Vector3(i, j, 0);
+            if (ts.guaranteedItemDrop != null)
+            {
+                if (e != null) e.guaranteedItemDrop = ts.guaranteedItemDrop;
+            }
+        }
+
+        if (ts.overrideTileNum == -1)
+        {
+            SET_MAP(i, j, defaultTileNum);
+        }
+        else
+        {
+            SET_MAP(i, j, ts.overrideTileNum);
+        }
     }
 
     private void ShowMap()
