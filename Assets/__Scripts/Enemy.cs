@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -8,10 +6,11 @@ public class Enemy : MonoBehaviour
     static protected Vector3[] directions = new Vector3[] { Vector3.right, Vector3.up, Vector3.left, Vector3.down};
 
     [Header("Set in Inspector: Enemy")]
-    public float maxHealth = 1;
-    public float knockbackSpeed = 10;
-    public float knockbackDuration = 0.25f;
-    public float invincibleDuration = 0.5f;
+    public float      maxHealth = 1;
+    public float      knockbackSpeed = 10;
+    public float      knockbackDuration = 0.25f;
+    public float      invincibleDuration = 0.5f;
+    public GameObject[] randomItemDrops;    
     
 
     [Header("Set Dynamically: Enemy")]
@@ -89,6 +88,18 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        GameObject go;
+        if (randomItemDrops.Length > 0)
+        {
+            int n = UnityEngine.Random.Range(0, randomItemDrops.Length);
+            GameObject prefab = randomItemDrops[n];
+            if (prefab != null)
+            {
+                go = Instantiate<GameObject>(prefab);
+                go.transform.position = transform.position;
+            }
+        }
+
         Destroy(gameObject);
     }
 }
