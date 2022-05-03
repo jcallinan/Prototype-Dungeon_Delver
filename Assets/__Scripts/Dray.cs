@@ -10,7 +10,8 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
         idle,
         move,
         attack,
-        transition
+        transition,
+        knockback
     }
     
     [Header("Set in Inspector")]
@@ -18,25 +19,34 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
     public float attackDuration = 0.25f;
     public float attackDelay = 0.5f;
     public float transitionDelay = 0.5f;
+    public int   maxHealth = 10;
+    public float knockbackSpeed = 10;
+    public float knockbackDuration = 0.25f;
+    public float invincibleDuration = 0.5f;
+    
 
     [Header("Set Dynamically")]
-    public int   dirHeld = -1;
-    public int   facing = 1;
-    public eMode mode = eMode.idle;
-    public int   numKeys = 0;
+    public int                   dirHeld = -1;
+    public int                   facing = 1;
+    public eMode                 mode = eMode.idle;
+    public int                   numKeys = 0;
+    public bool                  invincible = true;    
+    [SerializeField] private int _health;    
     
-
-    private Rigidbody _rigid;
-    private Animator  _anim;
-    private InRoom    _inRoom;
-    
+    private Rigidbody      _rigid;
+    private Animator       _anim;
+    private InRoom         _inRoom;
+    private SpriteRenderer _sRend;
 
     // Mode related fields
     private float     _timeAtkDone = 0;
     private float     _timeAtkNext = 0;
     private float     _transitionDone = 0;
     private Vector2   _transitionPos;
-     
+    private float     _knockbackDone = 0;
+    private float     _invincibleDone = 0;
+    private Vector3   _knockbackVel;
+    
     private KeyCode[] _keys = new KeyCode[]{ KeyCode.RightArrow,KeyCode.UpArrow, KeyCode.LeftArrow, KeyCode.DownArrow};
     private Vector3[] _directions = new Vector3[]{ Vector3.right,Vector3.up, Vector3.left, Vector3.down};
     
@@ -46,10 +56,22 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
         _rigid = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         _inRoom = GetComponent<InRoom>();
+        _sRend = GetComponent<SpriteRenderer>();
+        _health = maxHealth;
     }   
 
     private void Update()
-    {
+    {   
+        if (invincible && Time.time > _invincibleDone) invincible = false;
+
+        _sRend.color = invincible ? Color.red : Color.white;
+
+        if (mode == eMode.knockback)
+        {
+            _rigid.velocity = _knockbackVel;
+            if (Time.time < _knockbackDone) return;
+        }
+
         if (mode == eMode.transition)
         {
             _rigid.velocity = Vector3.zero;
@@ -163,6 +185,39 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
 
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (invincible) return;
+
+        DamageEffect dEff = other.gameObject.GetComponent<DamageEffect>();
+        if (dEff == null) return;
+
+        health -= dEff.damage;
+        invincible = true;
+        _invincibleDone = Time.time + invincibleDuration;
+
+        if (dEff.knockback)
+        {
+            Vector3 delta = transform.position - other.transform.position;
+            if (Mathf.Abs(delta.x) >= Mathf.Abs(delta.y))
+            {
+                delta.x = (delta.x > 0) ? 1 : -1;
+                delta.y = 0;
+            }
+            else
+            {
+                delta.x = 0;
+                delta.y = (delta.y > 0) ? 1 : -1;
+            }
+
+            _knockbackVel = delta * knockbackSpeed;
+            _rigid.velocity = _knockbackVel;
+
+            mode = eMode.knockback;
+            _knockbackDone = Time.time + knockbackDuration;
+        }
+    }
+
 
     public int GetFacing()
     {
@@ -231,5 +286,16 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
             numKeys = value;
         }
     }
-    
+
+    public int health
+    {
+        get
+        {
+            return _health;
+        }
+        set
+        {
+            _health = value;
+        }
+    }    
 }
