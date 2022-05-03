@@ -7,6 +7,17 @@ public class InRoom : MonoBehaviour
     static public float ROOM_W = 16;
     static public float ROOM_H = 11;
     static public float WALL_T = 2;
+    static public int MAX_RM_X = 9;
+    static public int MAX_RM_Y = 9;
+
+    static public Vector2[] DOORS = new Vector2[]{
+        new Vector2(14, 5),
+        new Vector2(7.5f, 9),
+        new Vector2(1, 5),
+        new Vector2(7.5f, 1),
+    };
+    
+    
 
     [Header("Set in Inspector")]
     public bool  keepInRoom = true;

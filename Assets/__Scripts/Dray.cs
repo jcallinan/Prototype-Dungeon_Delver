@@ -17,6 +17,7 @@ public class Dray : MonoBehaviour, IFacingMover
     public float speed = 5;
     public float attackDuration = 0.25f;
     public float attackDelay = 0.5f;
+    public float transitionDelay = 0.5f;
 
     [Header("Set Dynamically")]
     public int   dirHeld = -1;
@@ -29,8 +30,11 @@ public class Dray : MonoBehaviour, IFacingMover
     
 
     // Mode related fields
-    private float _timeAtkDone = 0;
-    private float _timeAtkNext = 0;    
+    private float     _timeAtkDone = 0;
+    private float     _timeAtkNext = 0;
+    private float     _transitionDone = 0;
+    private Vector2   _transitionPos;
+     
     private KeyCode[] _keys = new KeyCode[]{ KeyCode.RightArrow,KeyCode.UpArrow, KeyCode.LeftArrow, KeyCode.DownArrow};
     private Vector3[] _directions = new Vector3[]{ Vector3.right,Vector3.up, Vector3.left, Vector3.down};
     
@@ -44,6 +48,15 @@ public class Dray : MonoBehaviour, IFacingMover
 
     private void Update()
     {
+        if (mode == eMode.transition)
+        {
+            _rigid.velocity = Vector3.zero;
+            _anim.speed = 0;
+            roomPos = _transitionPos;
+
+            if (Time.time < _transitionDone) mode = eMode.idle;
+        }
+
         dirHeld = -1;
         
         // Handle movement input
@@ -100,6 +113,52 @@ public class Dray : MonoBehaviour, IFacingMover
         }
 
         _rigid.velocity = vel * speed;
+    }
+
+    private void LateUpdate()
+    {
+        Vector2 rPos = GetRoomPosOnGrid(0.5f);
+
+        int doorNum;
+        for (doorNum = 0; doorNum < 4; doorNum++)
+        {
+            if (rPos == InRoom.DOORS[doorNum]) break;
+        }
+
+        if (doorNum > 3 || doorNum != facing) return;
+
+        Vector2 rm = roomNum;
+        switch (doorNum)
+        {
+            case 0:
+                rm.x += 1;
+                break;
+
+            case 1:
+                rm.y += 1;
+                break;
+
+            case 2:
+                rm.x -= 1;
+                break;
+
+            case 3:
+                rm.y -= 1;
+                break;
+        }
+
+        if (rm.x >= 0 && rm.x <= InRoom.MAX_RM_X)
+        {
+            if (rm.y >= 0 && rm.y <= InRoom.MAX_RM_Y)
+            {
+                roomNum = rm;
+                _transitionPos = InRoom.DOORS[(doorNum + 2) % 4];
+                roomPos = _transitionPos;
+                mode = eMode.transition;
+                _transitionDone = Time.time + transitionDelay;
+            }
+        }
+
     }
 
 
