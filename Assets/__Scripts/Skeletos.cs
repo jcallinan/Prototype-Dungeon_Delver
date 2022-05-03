@@ -16,7 +16,7 @@ public class Skeletos : Enemy, IFacingMover
     private InRoom _inRoom;
     
 
-    protected override void Awake()
+    override protected void Awake()
     {
         base.Awake();
 
@@ -24,8 +24,11 @@ public class Skeletos : Enemy, IFacingMover
     }
     
     
-    private void Update()
+    override protected void Update()
     {
+        base.Update();
+        if (knockback) return;
+        
         if (Time.time >= timeNextDecision) DecideDirection();
 
         rigid.velocity = directions[facing] * speed;
