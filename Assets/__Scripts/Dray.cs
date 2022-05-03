@@ -30,7 +30,12 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
     public int                   facing = 1;
     public eMode                 mode = eMode.idle;
     public int                   numKeys = 0;
-    public bool                  invincible = true;    
+    public bool                  invincible = true;
+    public bool hasGrappler = false;
+    public Vector3 lastSafeLoc;
+    public int lastSafeFacing;
+    
+    
     [SerializeField] private int _health;    
     
     private Rigidbody      _rigid;
@@ -58,6 +63,9 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
         _inRoom = GetComponent<InRoom>();
         _sRend = GetComponent<SpriteRenderer>();
         _health = maxHealth;
+
+        lastSafeLoc = transform.position;
+        lastSafeFacing = facing;
     }   
 
     private void Update()
@@ -178,6 +186,9 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
                 roomNum = rm;
                 _transitionPos = InRoom.DOORS[(doorNum + 2) % 4];
                 roomPos = _transitionPos;
+                lastSafeLoc = transform.position;
+                lastSafeFacing = facing;
+
                 mode = eMode.transition;
                 _transitionDone = Time.time + transitionDelay;
             }
@@ -232,6 +243,10 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
             case PickUp.eType.key:
                 keyCount++;
                 break;
+            
+            case PickUp.eType.grappler:
+                hasGrappler = true;
+                break;
         }
 
         Destroy(other.gameObject);
@@ -250,6 +265,16 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
     public Vector2 GetRoomPosOnGrid(float mult = -1)
     {
         return _inRoom.GetRoomPosOnGrid(mult);
+    }
+
+    public void ResetInRoom(int healthPenalty = 0)
+    {
+        transform.position = lastSafeLoc;
+        facing = lastSafeFacing;
+        
+        health -= healthPenalty;
+        invincible = true;
+        _invincibleDone = Time.time + invincibleDuration;
     }
     
 
