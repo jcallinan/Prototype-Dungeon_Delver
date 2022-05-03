@@ -35,8 +35,8 @@ public class CamFollowDray : MonoBehaviour
         }
         else
         {
-            if (drayInRoom.roomNum != _inRoom.roomNum) TransitionTo(drayInRoom.roomNum);
-            
+            if (drayInRoom.roomNum != _inRoom.roomNum) 
+                TransitionTo(drayInRoom.roomNum);
         }
     }
 
@@ -45,7 +45,7 @@ public class CamFollowDray : MonoBehaviour
         _p0 = transform.position;
         _inRoom.roomNum = rm;
         _p1 = transform.position + (Vector3.back * 10);
-        transform.position = _p0;
+        transform.position = _p1;
 
         _transitionStart = Time.time;
         TRANSITIONING = false;
