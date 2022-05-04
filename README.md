@@ -2,7 +2,7 @@
 
 This project is a Unity Example Game from the book [Introduction to Game Design, Prototyping, and Development, 2nd Edition](https://book.prototools.net/), by Jeremy Gibson Bond.
 
-It is a classic rogue game prototype, inspired by the [The Legend of Zelda](https://en.wikipedia.org/wiki/The_Legend_of_Zelda_(video_game)) game.
+It is a classic action-adventure game prototype, inspired by the [The Legend of Zelda](https://en.wikipedia.org/wiki/The_Legend_of_Zelda_(video_game)) game.
 
 You can play it [here!](https://shaman37.itch.io/prototype-dungeon-delver)
 
