@@ -104,9 +104,13 @@ public class Grapple : MonoBehaviour
                 break;
 
             case eMode.gInMiss:
+                float previousDotProduct = Vector3.Dot((_p0 - _p1), _directions[_facing]);
+
                 _p1 -= _directions[_facing] * 2 * grappleSpd * Time.fixedDeltaTime;
                 float dotProduct = Vector3.Dot((_p0 - _p1), _directions[_facing]);
 
+                if(dotProduct > previousDotProduct) StopGrapple();
+                
                 if (dotProduct > 0)
                 {
                     _grapHead.transform.position = _p1;
@@ -115,7 +119,7 @@ public class Grapple : MonoBehaviour
                 else
                 {
                     StopGrapple();
-                }
+                }          
 
                 break;
 

@@ -5,9 +5,9 @@ using UnityEngine;
 public class GateKeeper : MonoBehaviour
 {
     const int lockedR = 95;
-    const int lockedDR = 102;
+    const int lockedDR = 100;
     const int lockedUR = 81;
-    const int lockedL = 100;
+    const int lockedL = 102;
     const int lockedDL = 101;
     const int lockedUL = 80;
 

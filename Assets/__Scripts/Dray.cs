@@ -31,9 +31,9 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
     public eMode                 mode = eMode.idle;
     public int                   numKeys = 0;
     public bool                  invincible = true;
-    public bool hasGrappler = false;
-    public Vector3 lastSafeLoc;
-    public int lastSafeFacing;
+    public bool                  hasGrappler = false;
+    public Vector3               lastSafeLoc;
+    public int                   lastSafeFacing;
     
     [SerializeField] private int _health;    
     
@@ -51,15 +51,12 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
     private float     _invincibleDone = 0;
     private Vector3   _knockbackVel;
     
-    private KeyCode[] _keys = new KeyCode[]{ KeyCode.RightArrow,KeyCode.UpArrow, KeyCode.LeftArrow, KeyCode.DownArrow};
-    private Vector3[] _directions = new Vector3[]{ Vector3.right,Vector3.up, Vector3.left, Vector3.down};
-
+    private Vector3[]        _directions = new Vector3[]{ Vector3.right,Vector3.up, Vector3.left, Vector3.down};
     private Func<float, int> horFacing = input => (input > 0) ? 0: 2;
     private Func<float, int> verFacing = input => (input > 0) ? 1: 3;
-
-    private string _pressedFirst;
+    private string           _pressedFirst;
+    private Vector3          _initialPosition;
     
-
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody>();
@@ -68,7 +65,8 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
         _sRend = GetComponent<SpriteRenderer>();
         _health = maxHealth;
 
-        lastSafeLoc = transform.position;
+        _initialPosition = transform.position;
+        lastSafeLoc = _initialPosition;
         lastSafeFacing = facing;
     }   
 
@@ -229,6 +227,12 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
         if (dEff == null) return;
 
         health -= dEff.damage;
+        if (health == 0)
+        {
+            Die();
+            return;
+        }
+
         invincible = true;
         _invincibleDone = Time.time + invincibleDuration;
 
@@ -302,6 +306,15 @@ public class Dray : MonoBehaviour, IFacingMover, IKeyMaster
         _invincibleDone = Time.time + invincibleDuration;
     }
     
+    public void Die()
+    {
+        transform.position = _initialPosition;
+        facing = 1;
+        
+        health = 2;
+        invincible = true;
+        _invincibleDone = Time.time + invincibleDuration;
+    }
 
     public bool moving
     {

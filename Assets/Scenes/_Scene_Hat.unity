@@ -354,11 +354,11 @@ MonoBehaviour:
     overrideTileNum: -1
   - tileNum: 227
     prefabSwap: {fileID: 1000010950105738, guid: 002d3cd572dd2425c9aeacc3340afccb, type: 3}
-    guaranteedItemDrop: {fileID: 6413086196044468972, guid: 4ece31fccf42d744ba75831e2f306336, type: 3}
+    guaranteedItemDrop: {fileID: 0}
     overrideTileNum: 0
   - tileNum: 228
     prefabSwap: {fileID: 1000010950105738, guid: 002d3cd572dd2425c9aeacc3340afccb, type: 3}
-    guaranteedItemDrop: {fileID: 4846582940006913824, guid: 8a4a3f4f748a5a242aa92c5d66d8401a, type: 3}
+    guaranteedItemDrop: {fileID: 0}
     overrideTileNum: 96
 --- !u!20 &519420031
 Camera:
@@ -701,6 +701,10 @@ PrefabInstance:
     - target: {fileID: 6842122199909651491, guid: fb6b3c5724caab94c824582ad5f1d2d9, type: 3}
       propertyPath: m_Name
       value: Dray
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842122199909651502, guid: fb6b3c5724caab94c824582ad5f1d2d9, type: 3}
+      propertyPath: hasGrappler
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb6b3c5724caab94c824582ad5f1d2d9, type: 3}
