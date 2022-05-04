@@ -704,7 +704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6842122199909651502, guid: fb6b3c5724caab94c824582ad5f1d2d9, type: 3}
       propertyPath: hasGrappler
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb6b3c5724caab94c824582ad5f1d2d9, type: 3}
