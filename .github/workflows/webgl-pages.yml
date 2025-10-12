@@ -1,0 +1,58 @@
+name: Build & Deploy Unity WebGL to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      pages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # (Optional) cache Library to speed up builds
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-WebGL-${{ hashFiles('**/Packages/manifest.json') }}
+          restore-keys: |
+            Library-WebGL-
+            Library-
+
+      # Build WebGL (auto-detects Unity version from ProjectSettings/ProjectVersion.txt)
+      - name: Build WebGL
+        uses: game-ci/unity-builder@v4
+        with:
+          targetPlatform: WebGL
+          allowDirtyBuild: true
+          buildName: WebGLBuild
+          buildsPath: build
+          # If your project is in a subfolder, set 'projectPath'. Otherwise omit.
+          # projectPath: .
+
+      # Upload the build folder as the Pages artifact
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/WebGL/WebGLBuild
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
