@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
       pages: write
+      id-token: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # (Optional) cache Library to speed up builds
+      # Optional cache to speed up subsequent builds
       - name: Cache Unity Library
         uses: actions/cache@v4
         with:
@@ -34,14 +35,46 @@ jobs:
           allowDirtyBuild: true
           buildName: WebGLBuild
           buildsPath: build
-          # If your project is in a subfolder, set 'projectPath'. Otherwise omit.
-          # projectPath: .
+          # If your Unity project is in a subfolder, set projectPath: <subfolder>
 
-      # Upload the build folder as the Pages artifact
+      # <-- NEW: show build output -->
+      - name: Show build output
+        run: |
+          echo "==== ls -R build ===="
+          ls -R build || true
+
+      # <-- NEW: find the folder that contains index.html and TemplateData -->
+      - name: Find publish directory
+        id: find
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Look for index.html one level or two below build/
+          CANDIDATES=$(find build -type f -name index.html | sort)
+          PUBLISH_DIR=""
+          while IFS= read -r f; do
+            d="$(dirname "$f")"
+            if [ -d "$d/TemplateData" ]; then
+              PUBLISH_DIR="$d"
+              break
+            fi
+          done <<< "$CANDIDATES"
+
+          if [ -z "$PUBLISH_DIR" ]; then
+            echo "No publishable WebGL folder (index.html + TemplateData) found under build/."
+            echo "Candidates were:"
+            echo "$CANDIDATES"
+            exit 1
+          fi
+
+          echo "publish_dir=$PUBLISH_DIR" >> "$GITHUB_OUTPUT"
+          echo "Publish dir: $PUBLISH_DIR"
+
+      # Upload the detected folder as the Pages artifact
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build/WebGL/WebGLBuild
+          path: ${{ steps.find.outputs.publish_dir }}
 
   deploy:
     needs: build
