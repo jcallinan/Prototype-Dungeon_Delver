@@ -4,7 +4,12 @@ This project is a Unity Example Game from the book [Introduction to Game Design,
 
 It is a classic action-adventure game prototype, inspired by the [The Legend of Zelda](https://en.wikipedia.org/wiki/The_Legend_of_Zelda_(video_game)) game.
 
-You can play it [here!](https://shaman37.itch.io/prototype-dungeon-delver)
+You can play it here — [Dungeon Delver Live](https://jcallinan.github.io/Prototype-Dungeon_Delver/)
+
+
+[Another example online](https://shaman37.itch.io/prototype-dungeon-delver)
+
+
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17680666/166609608-863d84a2-1dfc-4917-a3b3-fc06a774c7e0.png" />
