@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    if: ${{ secrets.UNITY_LICENSE != '' }}  # <-- skip build if license not set
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -17,7 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Optional cache to speed up subsequent builds
+      - name: Activate Unity
+        uses: game-ci/unity-activate@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
       - name: Cache Unity Library
         uses: actions/cache@v4
         with:
@@ -27,7 +32,6 @@ jobs:
             Library-WebGL-
             Library-
 
-      # Build WebGL (auto-detects Unity version from ProjectSettings/ProjectVersion.txt)
       - name: Build WebGL
         uses: game-ci/unity-builder@v4
         with:
@@ -35,22 +39,19 @@ jobs:
           allowDirtyBuild: true
           buildName: WebGLBuild
           buildsPath: build
-          # If your Unity project is in a subfolder, set projectPath: <subfolder>
+          # projectPath: .   # uncomment if your Unity project is in a subfolder
 
-      # <-- NEW: show build output -->
       - name: Show build output
         run: |
           echo "==== ls -R build ===="
           ls -R build || true
 
-      # <-- NEW: find the folder that contains index.html and TemplateData -->
       - name: Find publish directory
         id: find
         shell: bash
         run: |
           set -euo pipefail
-          # Look for index.html one level or two below build/
-          CANDIDATES=$(find build -type f -name index.html | sort)
+          CANDIDATES=$(find build -type f -name index.html | sort || true)
           PUBLISH_DIR=""
           while IFS= read -r f; do
             d="$(dirname "$f")"
@@ -59,25 +60,28 @@ jobs:
               break
             fi
           done <<< "$CANDIDATES"
-
           if [ -z "$PUBLISH_DIR" ]; then
             echo "No publishable WebGL folder (index.html + TemplateData) found under build/."
-            echo "Candidates were:"
             echo "$CANDIDATES"
             exit 1
           fi
-
           echo "publish_dir=$PUBLISH_DIR" >> "$GITHUB_OUTPUT"
           echo "Publish dir: $PUBLISH_DIR"
 
-      # Upload the detected folder as the Pages artifact
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ steps.find.outputs.publish_dir }}
 
+      - name: Return Unity License
+        if: always()
+        uses: game-ci/unity-return-license@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
   deploy:
     needs: build
+    if: ${{ needs.build.result == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       pages: write
