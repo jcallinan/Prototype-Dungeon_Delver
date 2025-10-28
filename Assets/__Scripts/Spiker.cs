@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Spiker : MonoBehaviour {
+/*
+//[RequireComponent(typeof(DamageEffect))]
+//[RequireComponent(typeof(InRoom))]
+public class Spiker : Enemy {
     enum eMode { search, attack, retract };
 
     [Header("Set in Inspector")]
@@ -17,16 +20,19 @@ public class Spiker : MonoBehaviour {
     private Vector3         p0, p1;
     private DamageEffect    dEf;
 
-	void Start () {
+    override protected void Start () {
+        base.Start();
+
         inRm = GetComponent<InRoom>();
 
         GameObject go = GameObject.Find("Dray");
         dray = go.GetComponent<Dray>();
         drayColld = go.GetComponent<SphereCollider>();
         dEf = GetComponent<DamageEffect>();
-	}
-	
-	void Update () {
+        invincible = true;
+    }
+
+    override protected void Update () {
         switch (mode) {
             case eMode.search:
                 // Check whether Dray is in the same room
@@ -92,5 +98,6 @@ public class Spiker : MonoBehaviour {
                 break;
 
         }
-	}
+	}   
 }
+*/

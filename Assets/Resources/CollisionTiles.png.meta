@@ -1,43 +1,55 @@
 fileFormatVersion: 2
-guid: 102ca6f61e30340f3a3ad88115650883
+guid: 6823ec4345f644b8fb80618bd2746203
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 21300000
-    second: Dray_Walk_0a
+      213: 3057408086257578086
+    second: 1
   - first:
-      213: 21300002
-    second: Dray_Walk_1a
+      213: -8895540873059680133
+    second: 2
   - first:
-      213: 21300004
-    second: Dray_Walk_2a
+      213: 6672045122982553406
+    second: 3
   - first:
-      213: 21300006
-    second: Dray_Walk_3a
+      213: -480838651010229731
+    second: 4
   - first:
-      213: 21300008
-    second: Dray_Walk_0b
+      213: -8637697456663632880
+    second: Q
   - first:
-      213: 21300010
-    second: Dray_Walk_1b
+      213: 4434970852563267556
+    second: W
   - first:
-      213: 21300012
-    second: Dray_Walk_2b
+      213: -6210032008513051252
+    second: E
   - first:
-      213: 21300014
-    second: Dray_Walk_3b
+      213: 3225732671187155956
+    second: R
   - first:
-      213: 21300016
-    second: Dray_Attack_0
+      213: 8428980783326922189
+    second: A
   - first:
-      213: 21300018
-    second: Dray_Attack_1
+      213: 8695231871679042046
+    second: S
   - first:
-      213: 21300020
-    second: Dray_Attack_2
+      213: -8559551184541837173
+    second: D
   - first:
-      213: 21300022
-    second: Dray_Attack_3
+      213: -8554462870212768395
+    second: F
+  - first:
+      213: 6892660641830667883
+    second: Z
+  - first:
+      213: -7477720532274095986
+    second: X
+  - first:
+      213: -892128017652925566
+    second: C
+  - first:
+      213: 5672539530220858884
+    second: _
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,12 +78,12 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: -5
+  textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: 16
+    aniso: 1
     mipBias: 0
     wrapU: 1
     wrapV: 1
@@ -99,7 +111,7 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
   cookieLightType: 1
   platformSettings:
@@ -110,12 +122,12 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -123,12 +135,12 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
@@ -136,12 +148,12 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -149,12 +161,12 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
@@ -162,17 +174,125 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dray_Walk_0a
+      name: 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 0, y: -8}
+        - {x: 0, y: 0}
+        - {x: 8, y: 0}
+        - {x: 8, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6603ac2a4781e6a20800000000000000
+      internalID: 3057408086257578086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: 0}
+        - {x: 0, y: 0}
+        - {x: 0, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b704f40e4b0bc8480800000000000000
+      internalID: -8895540873059680133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 0, y: 8}
+        - {x: 0, y: 0}
+        - {x: -8, y: 0}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e37a0c870bdd79c50800000000000000
+      internalID: 6672045122982553406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 0}
+        - {x: 0, y: 0}
+        - {x: 0, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1ad1446bc7b359f0800000000000000
+      internalID: -480838651010229731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Q
       rect:
         serializedVersion: 2
         x: 0
@@ -183,17 +303,21 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: 0}
+        - {x: 0, y: 0}
+        - {x: 0, y: 8}
       tessellationDetail: 0
       bones: []
-      spriteID: 02305410000000000800000000000000
-      internalID: 21300000
+      spriteID: 014e44a7debb02880800000000000000
+      internalID: -8637697456663632880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Walk_1a
+      name: W
       rect:
         serializedVersion: 2
         x: 16
@@ -204,17 +328,21 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: 0}
+        - {x: 8, y: 0}
+        - {x: 8, y: 8}
       tessellationDetail: 0
       bones: []
-      spriteID: 22305410000000000800000000000000
-      internalID: 21300002
+      spriteID: 4efae303e7e2c8d30800000000000000
+      internalID: 4434970852563267556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Walk_2a
+      name: E
       rect:
         serializedVersion: 2
         x: 32
@@ -225,17 +353,21 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 0, y: 0}
+        - {x: 0, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: 0}
       tessellationDetail: 0
       bones: []
-      spriteID: 42305410000000000800000000000000
-      internalID: 21300004
+      spriteID: c8526c85ac881d9a0800000000000000
+      internalID: -6210032008513051252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Walk_3a
+      name: R
       rect:
         serializedVersion: 2
         x: 48
@@ -246,17 +378,25 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 0}
+        - {x: -8, y: 8}
+        - {x: 0, y: 8}
+        - {x: 0, y: 0}
+      - - {x: 0, y: -8}
+        - {x: 0, y: 0}
+        - {x: 8, y: 0}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 62305410000000000800000000000000
-      internalID: 21300006
+      spriteID: 4fb7b7616ca14cc20800000000000000
+      internalID: 3225732671187155956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Walk_0b
+      name: A
       rect:
         serializedVersion: 2
         x: 0
@@ -267,17 +407,21 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 0, y: 8}
+        - {x: 0, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 82305410000000000800000000000000
-      internalID: 21300008
+      spriteID: dc58bc02d51c9f470800000000000000
+      internalID: 8428980783326922189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Walk_1b
+      name: S
       rect:
         serializedVersion: 2
         x: 16
@@ -288,17 +432,21 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
       tessellationDetail: 0
       bones: []
-      spriteID: a2305410000000000800000000000000
-      internalID: 21300010
+      spriteID: ef19517615baba870800000000000000
+      internalID: 8695231871679042046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Walk_2b
+      name: D
       rect:
         serializedVersion: 2
         x: 32
@@ -309,17 +457,21 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 0, y: -8}
+        - {x: 0, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: c2305410000000000800000000000000
-      internalID: 21300012
+      spriteID: b881c905c8d563980800000000000000
+      internalID: -8559551184541837173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Walk_3b
+      name: F
       rect:
         serializedVersion: 2
         x: 48
@@ -330,17 +482,25 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 0, y: 0}
+        - {x: 0, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: 0}
+      - - {x: -8, y: -8}
+        - {x: -8, y: 0}
+        - {x: 0, y: 0}
+        - {x: 0, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: e2305410000000000800000000000000
-      internalID: 21300014
+      spriteID: 57d03b0d751784980800000000000000
+      internalID: -8554462870212768395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Attack_0
+      name: Z
       rect:
         serializedVersion: 2
         x: 0
@@ -351,17 +511,21 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 0}
+        - {x: 0, y: 0}
+        - {x: 0, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 03305410000000000800000000000000
-      internalID: 21300016
+      spriteID: b6602a9b556a7af50800000000000000
+      internalID: 6892660641830667883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Attack_1
+      name: X
       rect:
         serializedVersion: 2
         x: 16
@@ -372,17 +536,21 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 0}
+        - {x: 8, y: 0}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 23305410000000000800000000000000
-      internalID: 21300018
+      spriteID: e8858286bccc93890800000000000000
+      internalID: -7477720532274095986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Attack_2
+      name: C
       rect:
         serializedVersion: 2
         x: 32
@@ -393,17 +561,21 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 0, y: -8}
+        - {x: 0, y: 0}
+        - {x: 8, y: 0}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 43305410000000000800000000000000
-      internalID: 21300020
+      spriteID: 28bbf9d6b468e93f0800000000000000
+      internalID: -892128017652925566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dray_Attack_3
+      name: _
       rect:
         serializedVersion: 2
         x: 48
@@ -417,8 +589,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63305410000000000800000000000000
-      internalID: 21300022
+      spriteID: 40eec29f5a8e8be40800000000000000
+      internalID: 5672539530220858884
       vertices: []
       indices: 
       edges: []
@@ -426,7 +598,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -434,18 +606,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dray_Attack_0: 21300016
-      Dray_Attack_1: 21300018
-      Dray_Attack_2: 21300020
-      Dray_Attack_3: 21300022
-      Dray_Walk_0a: 21300000
-      Dray_Walk_0b: 21300008
-      Dray_Walk_1a: 21300002
-      Dray_Walk_1b: 21300010
-      Dray_Walk_2a: 21300004
-      Dray_Walk_2b: 21300012
-      Dray_Walk_3a: 21300006
-      Dray_Walk_3b: 21300014
+      1: 3057408086257578086
+      2: -8895540873059680133
+      3: 6672045122982553406
+      4: -480838651010229731
+      A: 8428980783326922189
+      C: -892128017652925566
+      D: -8559551184541837173
+      E: -6210032008513051252
+      F: -8554462870212768395
+      Q: -8637697456663632880
+      R: 3225732671187155956
+      S: 8695231871679042046
+      W: 4434970852563267556
+      X: -7477720532274095986
+      Z: 6892660641830667883
+      _: 5672539530220858884
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

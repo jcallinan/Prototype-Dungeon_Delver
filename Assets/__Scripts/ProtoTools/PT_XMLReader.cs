@@ -2,6 +2,11 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/*--- Note to Readers ---
+ * This is no longer used in Introduction to Game Design, Prototyping, and Development,
+ * but I include it here so that you can use it if you ever need to parse XML files.
+ *    -- Jeremy
+ */
 
 /*
 <xml>
